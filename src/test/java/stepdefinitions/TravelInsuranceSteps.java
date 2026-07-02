@@ -35,6 +35,7 @@ public class TravelInsuranceSteps extends BaseClass {
         travelPage.selectTravellers();
     }
 
+
     @Then("Travel plans should be displayed")
     public void verifyPlans() {
 
@@ -42,9 +43,9 @@ public class TravelInsuranceSteps extends BaseClass {
                 "Travel plans are not displayed",
                 travelPage.verifyPlansDisplayed());
 
-        System.out.println(
-                "Plans displayed successfully");
+        travelPage.printPlanNamesAndCosts();
 
         closeBrowser();
     }
+
 }

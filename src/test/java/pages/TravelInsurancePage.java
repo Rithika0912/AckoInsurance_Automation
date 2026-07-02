@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class TravelInsurancePage {
 
@@ -125,6 +126,7 @@ public class TravelInsurancePage {
         js.executeScript(
                 "arguments[0].click();",
                 continueBtn);
+
     }
 
     public boolean verifyPlansDisplayed() {
@@ -133,4 +135,25 @@ public class TravelInsurancePage {
                 .contains("plans")
                 || driver.getCurrentUrl().contains("travel");
     }
+    public void printPlanNamesAndCosts() {
+
+
+        WebElement divVis=wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sc-gNJABI bKVCgl']")));
+        js.executeScript("arguments[0].scrollIntoView(true);", divVis);
+        List<WebElement> insurancePackages=driver.findElements(By.xpath("//div[@class='sc-jGxEUC cXfUzD']"));
+
+        System.out.println(insurancePackages.size());
+        for(WebElement w: insurancePackages) {
+            System.out.println(w.getText());
+        }
+
+        List<WebElement> cost=driver.findElements(By.xpath("//div[@class=\"sc-jRuhRL dSPYdl\"]"));
+
+        System.out.println(cost.size());
+        for(WebElement w: cost) {
+            System.out.println(w.getText());
+        }
+    }
+
 }
