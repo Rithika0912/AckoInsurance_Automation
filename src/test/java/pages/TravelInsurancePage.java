@@ -1,5 +1,7 @@
 package pages;
 
+import io.cucumber.java.bs.A;
+import org.apache.commons.compress.archivers.ar.ArArchiveEntry;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TravelInsurancePage {
@@ -142,15 +145,17 @@ public class TravelInsurancePage {
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sc-gNJABI bKVCgl']")));
         js.executeScript("arguments[0].scrollIntoView(true);", divVis);
         List<WebElement> insurancePackages=driver.findElements(By.xpath("//div[@class='sc-jGxEUC cXfUzD']"));
-
-        System.out.println(insurancePackages.size());
+        ArrayList<String> planName=new ArrayList<>();
+        System.out.println("Number of Plans Available "+insurancePackages.size());
         for(WebElement w: insurancePackages) {
-            System.out.println(w.getText());
+            planName.add(w.getText());
+        }
+        for(int i=0;i<planName.size();i++){
+            System.out.println("Plan "+(i+1)+" is "+planName.get(i));
         }
 
         List<WebElement> cost=driver.findElements(By.xpath("//div[@class=\"sc-jRuhRL dSPYdl\"]"));
-
-        System.out.println(cost.size());
+        System.out.println("Cost of Each Plan is "+cost.size());
         for(WebElement w: cost) {
             System.out.println(w.getText());
         }
