@@ -70,6 +70,11 @@ public class CarInsuranceSteps extends BaseClass {
                 "Enter a valid Pincode",
                 pincodeError);
 
+       
+    }
+    @And("close the Browser")
+    public void close(){
+            
         closeBrowser();
     }
 }
