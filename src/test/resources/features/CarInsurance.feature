@@ -7,3 +7,4 @@ Feature: Car Insurance
     And User selects Tata Punch Petrol Manual Pure MT vehicle
     And User enters invalid phone number and pincode
     Then Proper validation messages should be displayed
+    And close the Browser
