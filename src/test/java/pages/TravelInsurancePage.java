@@ -47,22 +47,16 @@ public class TravelInsurancePage {
     @FindBy(xpath="//div[@class='sc-cbkKFq dLULXL']")
     private WebElement enterCountry;
 
-    @FindBy(xpath="//*[@id=\"__next\"]/main/div/div[3]/div[2]/div/div[2]")
-    private WebElement calendar;
-
-    @FindBy(xpath="(//div[normalize-space()='17'])")
+    @FindBy(xpath="//p[text()='July 2026']/following-sibling::div//div[text()='17']")
     private WebElement startDate;
 
-    @FindBy(xpath="(//div[normalize-space()='29'])[3]")
+    @FindBy(xpath="//p[text()='July 2026']/following-sibling::div//div[text()='23']")
     private WebElement endDate;
 
     @FindBy(xpath="//button[text()='Next']")
     private WebElement next;
 
-    @FindBy(xpath="//*[@id=\"__next\"]/main/div/div[3]/div[3]/div/div[1]")
-    private WebElement travellerDetails;
-
-    @FindBy(xpath="//*[@id=\"__next\"]/main/div/div[3]/div[3]/div[2]/div[2]/div/div[2]/div[3]")
+    @FindBy(xpath="//div[text()='1']/following-sibling::div[@class='sc-kXeGPI gGpwrP']")
     private WebElement addAdultCount;
 
     @FindBy(xpath="//button[text()='Continue']")
@@ -74,7 +68,7 @@ public class TravelInsurancePage {
     @FindBy(xpath="//div[@class='sc-jGxEUC cXfUzD']")
     private List<WebElement> insurancePackages;
 
-    @FindBy(xpath="//div[@class=\"sc-jRuhRL dSPYdl\"]")
+    @FindBy(xpath="//div[@class='sc-jRuhRL dSPYdl']")
     private List<WebElement> cost;
 
     public void selectTravelInsurance() {
@@ -101,11 +95,15 @@ public class TravelInsurancePage {
         wait.until(
                 ExpectedConditions.visibilityOf(enterCountry));
         enterCountry.click();
+        wait.until(
+                ExpectedConditions.elementToBeClickable(next));
+
+        js.executeScript(
+                "arguments[0].click();",
+                next);
     }
 
     public void selectTravelDates() {
-
-        calendar.click();
 
         wait.until(
                 ExpectedConditions.elementToBeClickable(startDate));
@@ -126,9 +124,6 @@ public class TravelInsurancePage {
     }
 
     public void selectTravellers() {
-
-        travellerDetails.click();
-
         addAdultCount.click();
 
         wait.until(
