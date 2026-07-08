@@ -3,7 +3,7 @@ package stepdefinitions;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import pages.CarInsurancePage;
-import utils.BaseClass;
+import Base.BaseClass;
 
 public class CarInsuranceSteps extends BaseClass {
 

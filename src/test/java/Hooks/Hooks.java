@@ -1,4 +1,4 @@
-package stepdefinitions;
+package Hooks;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import com.aventstack.extentreports.ExtentTest;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import utils.BaseClass;
+import Base.BaseClass;
 import utils.ExtentManager;
 import utils.ScreenshotUtil;
 

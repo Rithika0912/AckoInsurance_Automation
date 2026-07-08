@@ -23,12 +23,26 @@ public class CarInsurancePage {
         wait = new WebDriverWait(driver,
                 Duration.ofSeconds(50));
     }
-
+    By CarInsurance=By.xpath("//h4[contains(text(),'Car insurance')]");
+    By InsuranceBrand=By.xpath("//h3[contains(text(),'Insure your brand')]");
+    By CarBrand=By.xpath("//div[text()='Tata']");
+    By CarModel=By.xpath("//div[text()='Punch']");
+    By fuel =By.xpath("//div[text()='Petrol']");
+    By manual=By.xpath("//div[text()='manual']");
+    By PureMT=By.xpath("//div[text()='Pure MT']");
+    By No=By.xpath("//span[text()='No']");
+    By BookedBtn=By.xpath("//div[contains(normalize-space(),'Have you booked the car?')]/following-sibling::div[1]//button");
+    By continueBtn=By.xpath("//button[.//span[text()='Continue']]");
+    By phoneNo=By.id("phone");
+    By Body=By.tagName("body");
+    By pincodeNo=By.id("pincode");
+    By phoneError=By.xpath("//p[contains(text(),'valid Phone')]");
+    By pinError=By.xpath("//p[text()='Enter a valid Pincode']");
     public void clickCarInsurance() {
 
         WebElement insurance = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//h4[contains(text(),'Car insurance')]")));
+                      CarInsurance));
 
         JavascriptExecutor js =
                 (JavascriptExecutor) driver;
@@ -45,8 +59,7 @@ public class CarInsurancePage {
     public void clickInsureBrand() {
 
         WebElement insureBrand = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//h3[contains(text(),'Insure your brand')]")));
+                ExpectedConditions.elementToBeClickable(InsuranceBrand));
 
         insureBrand.click();
     }
@@ -54,8 +67,7 @@ public class CarInsurancePage {
     public void selectTata() {
 
         WebElement brand = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//div[text()='Tata']")));
+                ExpectedConditions.elementToBeClickable(CarBrand));
 
         brand.click();
     }
@@ -64,7 +76,7 @@ public class CarInsurancePage {
 
         WebElement model = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                        By.xpath("//div[text()='Punch']")));
+                       CarModel));
 
         model.click();
     }
@@ -73,7 +85,7 @@ public class CarInsurancePage {
 
         WebElement fuelType = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                        By.xpath("//div[text()='Petrol']")));
+                      fuel));
 
         fuelType.click();
     }
@@ -82,7 +94,7 @@ public class CarInsurancePage {
 
         WebElement transmission = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                        By.xpath("//div[text()='manual']")));
+                       manual));
 
         transmission.click();
     }
@@ -91,7 +103,7 @@ public class CarInsurancePage {
 
         WebElement variant = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                        By.xpath("//div[text()='Pure MT']")));
+                        PureMT));
 
         variant.click();
     }
@@ -100,7 +112,7 @@ public class CarInsurancePage {
 
         WebElement commercial = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                        By.xpath("//span[text()='No']")));
+                        No));
 
         commercial.click();
     }
@@ -109,7 +121,7 @@ public class CarInsurancePage {
 
         WebElement booked = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                        By.xpath("//div[contains(normalize-space(),'Have you booked the car?')]/following-sibling::div[1]//button")));
+                        BookedBtn));
 
         booked.click();
     }
@@ -118,7 +130,7 @@ public class CarInsurancePage {
 
         WebElement continueButton = wait.until(
                 ExpectedConditions.elementToBeClickable(
-                        By.xpath("//button[.//span[text()='Continue']]")));
+                        continueBtn));
 
         continueButton.click();
     }
@@ -127,29 +139,29 @@ public class CarInsurancePage {
 
         WebElement phone = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.id("phone")));
+                        phoneNo));
 
         phone.sendKeys(phoneNumber);
 
-        driver.findElement(By.tagName("body")).click();
+        driver.findElement(Body).click();
     }
 
     public void enterPincode(String pinCode) {
 
         WebElement pincode = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.id("pincode")));
+                        pincodeNo));
 
         pincode.sendKeys(pinCode);
 
-        driver.findElement(By.tagName("body")).click();
+        driver.findElement(Body).click();
     }
 
     public String getPhoneError() {
 
         WebElement phoneAlert = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//p[contains(text(),'valid Phone')]")));
+                        phoneError));
 
         return phoneAlert.getText();
     }
@@ -158,7 +170,7 @@ public class CarInsurancePage {
 
         WebElement pincodeAlert = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//p[contains(text(),'valid Pincode')]")));
+                        pinError));
 
         return pincodeAlert.getText();
     }

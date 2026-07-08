@@ -10,28 +10,7 @@ import java.util.List;
 
 public class ExcelUtil {
 
-    public static String getData(String sheetName,
-                                 int rowNum,
-                                 int cellNum) throws Exception {
 
-        String path = "src/test/resources/TestData.xlsx";
-
-        FileInputStream fis = new FileInputStream(path);
-
-        XSSFWorkbook workbook = new XSSFWorkbook(fis);
-
-        XSSFSheet sheet = workbook.getSheet(sheetName);
-
-        DataFormatter formatter = new DataFormatter();
-
-        String value = formatter.formatCellValue(
-                sheet.getRow(rowNum).getCell(cellNum));
-
-        workbook.close();
-        fis.close();
-
-        return value;
-    }
     public static void writeData(List<String> data)
     {
         try

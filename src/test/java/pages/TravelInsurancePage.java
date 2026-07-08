@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,79 +32,93 @@ public class TravelInsurancePage {
         js = (JavascriptExecutor) driver;
     }
 
+    @FindBy(xpath="(//div[@class='Hero_heroCard__Etq_R '])[2]")
+    private WebElement clickTravel;
+
+    @FindBy(xpath="//p[contains(text(),'Get international travel insurance')]")
+    private WebElement clickInternational;
+
+    @FindBy(xpath="(//div[@class='styles_inputContainer__ryWDY'])[1]")
+    private WebElement searchCountry;
+
+    @FindBy(xpath="//input")
+    private WebElement searchBox;
+
+    @FindBy(xpath="//div[@class='sc-cbkKFq dLULXL']")
+    private WebElement enterCountry;
+
+    @FindBy(xpath="//*[@id=\"__next\"]/main/div/div[3]/div[2]/div/div[2]")
+    private WebElement calendar;
+
+    @FindBy(xpath="(//div[normalize-space()='17'])")
+    private WebElement startDate;
+
+    @FindBy(xpath="(//div[normalize-space()='29'])[3]")
+    private WebElement endDate;
+
+    @FindBy(xpath="//button[text()='Next']")
+    private WebElement next;
+
+    @FindBy(xpath="//*[@id=\"__next\"]/main/div/div[3]/div[3]/div/div[1]")
+    private WebElement travellerDetails;
+
+    @FindBy(xpath="//*[@id=\"__next\"]/main/div/div[3]/div[3]/div[2]/div[2]/div/div[2]/div[3]")
+    private WebElement addAdultCount;
+
+    @FindBy(xpath="//button[text()='Continue']")
+    private WebElement continueBtn;
+
+    @FindBy(xpath="//div[@class='sc-gNJABI bKVCgl']")
+    private WebElement divVis;
+
+    @FindBy(xpath="//div[@class='sc-jGxEUC cXfUzD']")
+    private List<WebElement> insurancePackages;
+
+    @FindBy(xpath="//div[@class=\"sc-jRuhRL dSPYdl\"]")
+    private List<WebElement> cost;
+
     public void selectTravelInsurance() {
 
-        WebElement clickTravel = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("(//div[@class='Hero_heroCard__Etq_R '])[2]")
-                )
-        );
-
+        wait.until(
+                ExpectedConditions.elementToBeClickable(clickTravel));
         clickTravel.click();
 
-        WebElement clickInternational = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//p[contains(text(),'Get international travel insurance')]")
-                )
-        );
-
+        wait.until(
+                ExpectedConditions.elementToBeClickable(clickInternational));
         clickInternational.click();
     }
 
     public void selectCountry(String country) {
 
-        WebElement searchCountry = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("(//div[@class='styles_inputContainer__ryWDY'])[1]")
-                )
-        );
-
+        wait.until(
+                ExpectedConditions.elementToBeClickable(searchCountry));
         searchCountry.click();
 
-        WebElement searchBox = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//input")
-                )
-        );
-
+        wait.until(
+                ExpectedConditions.visibilityOf(searchBox));
         searchBox.sendKeys(country);
 
-        WebElement enterCountry = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//div[@class='sc-cbkKFq dLULXL']")
-                )
-        );
-
+        wait.until(
+                ExpectedConditions.visibilityOf(enterCountry));
         enterCountry.click();
     }
 
     public void selectTravelDates() {
 
-        driver.findElement(
-                        By.xpath("//*[@id=\"__next\"]/main/div/div[3]/div[2]/div/div[2]"))
-                .click();
+        calendar.click();
 
-        WebElement startDate = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("(//div[normalize-space()='17'])")
-                )
-        );
+        wait.until(
+                ExpectedConditions.elementToBeClickable(startDate));
 
         startDate.click();
 
-        WebElement endDate = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("(//div[normalize-space()='29'])[3]")
-                )
-        );
+        wait.until(
+                ExpectedConditions.elementToBeClickable(endDate));
 
         endDate.click();
 
-        WebElement next = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//button[text()='Next']")
-                )
-        );
+        wait.until(
+                ExpectedConditions.elementToBeClickable(next));
 
         js.executeScript(
                 "arguments[0].click();",
@@ -112,19 +127,12 @@ public class TravelInsurancePage {
 
     public void selectTravellers() {
 
-        driver.findElement(
-                        By.xpath("//*[@id=\"__next\"]/main/div/div[3]/div[3]/div/div[1]"))
-                .click();
+        travellerDetails.click();
 
-        driver.findElement(
-                        By.xpath("//*[@id=\"__next\"]/main/div/div[3]/div[3]/div[2]/div[2]/div/div[2]/div[3]"))
-                .click();
+        addAdultCount.click();
 
-        WebElement continueBtn = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        By.xpath("//button[text()='Continue']")
-                )
-        );
+        wait.until(
+                ExpectedConditions.elementToBeClickable(continueBtn));
 
         js.executeScript(
                 "arguments[0].click();",
@@ -141,10 +149,9 @@ public class TravelInsurancePage {
     public void printPlanNamesAndCosts() {
 
 
-        WebElement divVis=wait.until(
-                ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sc-gNJABI bKVCgl']")));
+        wait.until(
+                ExpectedConditions.visibilityOf(divVis));
         js.executeScript("arguments[0].scrollIntoView(true);", divVis);
-        List<WebElement> insurancePackages=driver.findElements(By.xpath("//div[@class='sc-jGxEUC cXfUzD']"));
         ArrayList<String> planName=new ArrayList<>();
         System.out.println("Number of Plans Available "+insurancePackages.size());
         for(WebElement w: insurancePackages) {
@@ -153,8 +160,6 @@ public class TravelInsurancePage {
         for(int i=0;i<planName.size();i++){
             System.out.println("Plan "+(i+1)+" is "+planName.get(i));
         }
-
-        List<WebElement> cost=driver.findElements(By.xpath("//div[@class=\"sc-jRuhRL dSPYdl\"]"));
         System.out.println("Cost of Each Plan is "+cost.size());
         for(WebElement w: cost) {
             System.out.println(w.getText());

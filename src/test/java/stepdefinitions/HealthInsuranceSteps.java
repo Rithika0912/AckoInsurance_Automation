@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import Base.BaseClass;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,7 +9,7 @@ import utils.ExcelUtil;
 
 import java.util.List;
 
-public class HealthInsuranceSteps {
+public class HealthInsuranceSteps extends BaseClass {
 
     WebDriver driver;
     HealthInsurancePage homePage;
