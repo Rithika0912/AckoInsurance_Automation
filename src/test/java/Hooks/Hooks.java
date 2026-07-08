@@ -27,7 +27,7 @@ public class Hooks {
         test = extent.createTest(scenario.getName());
     }
 
-    @After
+   /* @After
     public void afterScenario(Scenario scenario) {
 
         WebDriver driver = BaseClass.driver;
@@ -56,5 +56,5 @@ public class Hooks {
         }
 
         extent.flush();
-    }
+    }*/
 }

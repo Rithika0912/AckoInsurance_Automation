@@ -4,6 +4,7 @@ import io.cucumber.java.en.*;
 import org.junit.Assert;
 import pages.CarInsurancePage;
 import Base.BaseClass;
+import utils.ScreenshotUtil;
 
 public class CarInsuranceSteps extends BaseClass {
 
@@ -61,6 +62,15 @@ public class CarInsuranceSteps extends BaseClass {
 
         System.out.println(
                 "Pincode Error : " + pincodeError);
+
+        try {
+            ScreenshotUtil.captureScreenshot(
+                    driver,
+                    "CarInsuranceValidation");
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
 
         Assert.assertEquals(
                 "Enter a valid Phone number",
