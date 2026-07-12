@@ -1,11 +1,11 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,30 +15,31 @@ public class HealthInsurancePage {
 
     public HealthInsurancePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
+    @FindBy(xpath="//div/span[text()='Products']")
+    private WebElement Products;
 
-    By Products =
-            By.xpath("//div/span[text()='Products']");
-    By Health= By.xpath("//div[text()='Health insurance' and @class='dhk7580 dhk7581 niwet11s']");
+    @FindBy(xpath="//div[text()='Health insurance' and @class='dhk7580 dhk7581 niwet11s']")
+    private WebElement Health;
 
-    By healthItems =
-            By.xpath("//a[contains(@href,'health-insurance')]/div[@class='_3n34710 _3n34711 _3n34710 _1a4b2178 zkw9eg8']");
+    @FindBy(xpath="//a[contains(@href,'health-insurance')]/div[@class='_3n34710 _3n34711 _3n34710 _1a4b2178 zkw9eg8']")
+    private List<WebElement> healthItems;
+
+
     public void clickProducts() {
-        driver.findElement(Products).click();
+        Products.click();
     }
-
 
     public List<String> getHealthInsuranceItems() {
 
-
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(Health));
-        driver.findElement(Health).click();
+        Health.click();
         wait.until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(healthItems));
+                ExpectedConditions.visibilityOfAllElements(healthItems));
 
-        List<WebElement> elements = driver.findElements(healthItems);
+        List<WebElement> elements = healthItems;
 
         System.out.println("Items found : " + elements.size());
 
@@ -58,6 +59,7 @@ public class HealthInsurancePage {
     }
 
     public void navigateBackToHome() {
+
         driver.navigate().back();
     }
 }

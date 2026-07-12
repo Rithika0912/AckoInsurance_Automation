@@ -1,177 +1,176 @@
 package pages;
 
-import org.openqa.selenium.By;
+import java.time.Duration;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class CarInsurancePage {
 
     WebDriver driver;
     WebDriverWait wait;
-
+    JavascriptExecutor js;
     public CarInsurancePage(WebDriver driver) {
 
         this.driver = driver;
         PageFactory.initElements(driver, this);
-
-        wait = new WebDriverWait(driver,
-                Duration.ofSeconds(50));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+        js = (JavascriptExecutor) driver;
     }
-    By CarInsurance=By.xpath("//h4[contains(text(),'Car insurance')]");
-    By InsuranceBrand=By.xpath("//h3[contains(text(),'Insure your brand')]");
-    By CarBrand=By.xpath("//div[text()='Tata']");
-    By CarModel=By.xpath("//div[text()='Punch']");
-    By fuel =By.xpath("//div[text()='Petrol']");
-    By manual=By.xpath("//div[text()='manual']");
-    By PureMT=By.xpath("//div[text()='Pure MT']");
-    By No=By.xpath("//span[text()='No']");
-    By BookedBtn=By.xpath("//div[contains(normalize-space(),'Have you booked the car?')]/following-sibling::div[1]//button");
-    By continueBtn=By.xpath("//button[.//span[text()='Continue']]");
-    By phoneNo=By.id("phone");
-    By Body=By.tagName("body");
-    By pincodeNo=By.id("pincode");
-    By phoneError=By.xpath("//p[contains(text(),'valid Phone')]");
-    By pinError=By.xpath("//p[text()='Enter a valid Pincode']");
+
+    @FindBy(xpath = "//h4[contains(text(),'Car insurance')]")
+    private WebElement carInsurance;
+
+    @FindBy(xpath = "//h3[contains(text(),'Insure your brand')]")
+    private WebElement insuranceBrand;
+
+    @FindBy(xpath = "//div[text()='Tata']")
+    private WebElement carBrand;
+
+    @FindBy(xpath = "//div[text()='Punch']")
+    private WebElement carModel;
+
+    @FindBy(xpath = "//div[text()='Petrol']")
+    private WebElement fuel;
+
+    @FindBy(xpath = "//div[text()='manual']")
+    private WebElement manual;
+
+    @FindBy(xpath = "//div[text()='Pure MT']")
+    private WebElement pureMT;
+
+    @FindBy(xpath = "//span[text()='No']")
+    private WebElement no;
+
+    @FindBy(xpath = "//div[contains(normalize-space(),'Have you booked the car?')]/following-sibling::div[1]//button")
+    private WebElement bookedBtn;
+
+    @FindBy(xpath = "//button[.//span[text()='Continue']]")
+    private WebElement continueBtn;
+
+    @FindBy(id = "phone")
+    private WebElement phoneNo;
+
+    @FindBy(tagName = "body")
+    private WebElement body;
+
+    @FindBy(id = "pincode")
+    private WebElement pincodeNo;
+
+    @FindBy(xpath = "//p[contains(text(),'valid Phone')]")
+    private WebElement phoneError;
+
+    @FindBy(xpath = "//p[text()='Enter a valid Pincode']")
+    private WebElement pinError;
+
     public void clickCarInsurance() {
 
-        WebElement insurance = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                      CarInsurance));
-
-        JavascriptExecutor js =
-                (JavascriptExecutor) driver;
-
+        wait.until(ExpectedConditions.visibilityOf(carInsurance));
         js.executeScript(
                 "arguments[0].scrollIntoView(true);",
-                insurance);
+                carInsurance);
 
         js.executeScript(
                 "arguments[0].click();",
-                insurance);
+                carInsurance);
     }
 
     public void clickInsureBrand() {
 
-        WebElement insureBrand = wait.until(
-                ExpectedConditions.elementToBeClickable(InsuranceBrand));
+        wait.until(ExpectedConditions.elementToBeClickable(insuranceBrand));
 
-        insureBrand.click();
+        insuranceBrand.click();
     }
 
     public void selectTata() {
 
-        WebElement brand = wait.until(
-                ExpectedConditions.elementToBeClickable(CarBrand));
+        wait.until(ExpectedConditions.elementToBeClickable(carBrand));
 
-        brand.click();
+        carBrand.click();
     }
 
     public void selectPunch() {
 
-        WebElement model = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                       CarModel));
+        wait.until(ExpectedConditions.elementToBeClickable(carModel));
 
-        model.click();
+        carModel.click();
     }
 
     public void selectPetrol() {
 
-        WebElement fuelType = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                      fuel));
+        wait.until(ExpectedConditions.elementToBeClickable(fuel));
 
-        fuelType.click();
+        fuel.click();
     }
 
     public void selectManual() {
 
-        WebElement transmission = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                       manual));
+        wait.until(ExpectedConditions.elementToBeClickable(manual));
 
-        transmission.click();
+        manual.click();
     }
 
     public void selectPureMT() {
 
-        WebElement variant = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        PureMT));
+        wait.until(ExpectedConditions.elementToBeClickable(pureMT));
 
-        variant.click();
+        pureMT.click();
     }
 
     public void selectCommercialNo() {
 
-        WebElement commercial = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        No));
+        wait.until(ExpectedConditions.elementToBeClickable(no));
 
-        commercial.click();
+        no.click();
     }
 
     public void selectBookedCar() {
 
-        WebElement booked = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        BookedBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(bookedBtn));
 
-        booked.click();
+        bookedBtn.click();
     }
 
     public void clickContinue() {
 
-        WebElement continueButton = wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        continueBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(continueBtn));
 
-        continueButton.click();
+        continueBtn.click();
     }
 
     public void enterPhone(String phoneNumber) {
 
-        WebElement phone = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        phoneNo));
+        wait.until(ExpectedConditions.visibilityOf(phoneNo));
 
-        phone.sendKeys(phoneNumber);
+        phoneNo.sendKeys(phoneNumber);
 
-        driver.findElement(Body).click();
+        body.click();
     }
 
     public void enterPincode(String pinCode) {
 
-        WebElement pincode = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        pincodeNo));
+        wait.until(ExpectedConditions.visibilityOf(pincodeNo));
 
-        pincode.sendKeys(pinCode);
+        pincodeNo.sendKeys(pinCode);
 
-        driver.findElement(Body).click();
+        body.click();
     }
 
     public String getPhoneError() {
 
-        WebElement phoneAlert = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        phoneError));
+        wait.until(ExpectedConditions.visibilityOf(phoneError));
 
-        return phoneAlert.getText();
+        return phoneError.getText();
     }
 
     public String getPincodeError() {
 
-        WebElement pincodeAlert = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        pinError));
+        wait.until(ExpectedConditions.visibilityOf(pinError));
 
-        return pincodeAlert.getText();
+        return pinError.getText();
     }
 }
